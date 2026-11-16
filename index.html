@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -197,10 +198,44 @@ button:active{transform:scale(.96)}
     opacity:0;
   }
 }
+
+/* MUSIC BUTTON */
+#musicBtn{
+  position:fixed;
+  top:18px;
+  right:18px;
+  z-index:9999;
+  width:48px;
+  height:48px;
+  min-height:48px;
+  padding:0;
+  border-radius:50%;
+  font-size:20px;
+  background:linear-gradient(135deg,#ff9bb8,#f36f9b);
+  box-shadow:0 5px 20px #ed7da766;
+}
+
+#musicBtn.playing{
+  animation:musicPulse 1.5s infinite;
+}
+
+@keyframes musicPulse{
+  50%{box-shadow:0 0 0 9px #ff9bb833}
+}
 </style>
 </head>
 
 <body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button id="musicBtn" onclick="toggleMusic()" aria-label="Play music">
+  🎵
+</button>
 
 <!-- OPENING -->
 <section class="page active" id="opening">
@@ -325,9 +360,52 @@ button:active{transform:scale(.96)}
 
 <script>
 const pages=[...document.querySelectorAll('.page')];
-const video=document.getElementById('myVideo');
 
+const video=document.getElementById('myVideo');
+const bgMusic=document.getElementById('bgMusic');
+const musicBtn=document.getElementById('musicBtn');
+
+let isPlaying=false;
+
+/* MUSIC PLAY / PAUSE */
+function toggleMusic(){
+
+  if(isPlaying){
+    bgMusic.pause();
+    isPlaying=false;
+
+    musicBtn.textContent="🎵";
+    musicBtn.classList.remove('playing');
+    musicBtn.setAttribute('aria-label','Play music');
+
+  }else{
+
+    bgMusic.play().then(()=>{
+
+      isPlaying=true;
+
+      musicBtn.textContent="⏸️";
+      musicBtn.classList.add('playing');
+      musicBtn.setAttribute('aria-label','Pause music');
+
+    }).catch(()=>{
+
+      alert('Musik belum bisa diputar. Pastikan file lagu.mp3 sudah diupload ke GitHub.');
+
+    });
+  }
+}
+
+/* UPDATE BUTTON WHEN MUSIC ENDS */
+bgMusic.addEventListener('ended',()=>{
+  isPlaying=false;
+  musicBtn.textContent="🎵";
+  musicBtn.classList.remove('playing');
+});
+
+/* PAGE NAVIGATION */
 function goTo(i){
+
   video.pause();
 
   pages.forEach(p=>p.classList.remove('active'));
@@ -340,29 +418,60 @@ function goTo(i){
   });
 }
 
+/* START VIDEO - PAUSE BACKGROUND MUSIC */
 function startVideo(){
+
+  bgMusic.pause();
+
+  isPlaying=false;
+
+  musicBtn.textContent="🎵";
+  musicBtn.classList.remove('playing');
+  musicBtn.setAttribute('aria-label','Play music');
+
   goTo(6);
 
   video.currentTime=0;
 
-  const p=video.play();
-
-  if(p!==undefined){
-    p.catch(()=>{});
-  }
-}
-
-function replayVideo(){
-  video.currentTime=0;
   video.play().catch(()=>{});
 }
 
-function stopAndGoBack(){
-  video.pause();
-  goTo(5);
+/* REPLAY VIDEO */
+function replayVideo(){
+
+  video.currentTime=0;
+
+  video.play().catch(()=>{});
 }
 
+/* BACK FROM VIDEO - RESUME MUSIC */
+function stopAndGoBack(){
+
+  video.pause();
+
+  goTo(5);
+
+  bgMusic.play().then(()=>{
+
+    isPlaying=true;
+
+    musicBtn.textContent="⏸️";
+    musicBtn.classList.add('playing');
+    musicBtn.setAttribute('aria-label','Pause music');
+
+  }).catch(()=>{
+
+    isPlaying=false;
+
+    musicBtn.textContent="🎵";
+    musicBtn.classList.remove('playing');
+
+  });
+}
+
+/* FLOATING DECORATIONS */
 function makeFloat(){
+
   const e=document.createElement('span');
 
   e.className='float';
