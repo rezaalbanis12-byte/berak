@@ -1,54 +1,387 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>untuk....</title>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Rani ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#0f172a,#1e293b);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;color:#fff}
-.card{max-width:900px;width:100%;height:90vh;overflow:auto;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:25px;border-radius:18px}
-h1{text-align:center}p{font-size:13px;line-height:1.6;white-space:pre-wrap;text-align:justify}
-</style></head><body><div class="card">
-<h1>Kertas Biru</h1>
-<p>Hai Rani, nda expectka nu buka ini link lagi... wkwk. Kenapa, rinduko? Hahay...
+*{box-sizing:border-box}
 
-Mungkin bertanyaki kenapa web-ku begini? Atau mungkin nda bertanyaji? Ah, biarmi ku jawabmi saja. Anggap saja ini web lagi dalam tahap pembangunan wkwkwk.
+body{
+  margin:0;
+  font-family:'DM Sans',sans-serif;
+  color:white;
+  overflow-x:hidden;
+}
 
-Tapi kenapa ku kasih begini web-nya?
+.page{
+  display:none;
+  min-height:100svh;
+  padding:30px 22px;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  position:relative;
+}
 
-Hmm... mauja meluruskan sesuatu.
+.page.active{
+  display:flex;
+  animation:fade .8s ease both;
+}
 
-Tapi mulai dari mana di...? Maaf kalo berantakan ki teksnya. Kukira nda bakal mu buka mi ini web lagi, jadi kutulis saja sesuai isi pikiranku sekarang.
+@keyframes fade{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-Yang pertama, maaf ka kalo selama ini murasa freak ka. Jujur, pertama kali ku ini suka banget sama orang. Dulu kalau suka sama orang, nda pernahka confess atau ketahuan. Baru kali ini saya confess ke cewe yang benar-benar saya suka, yaitu kamuu... Jadi mungkin kelihatan freak banget ka. Nda kutau harus bersikap bagaimana ke kau.
+#opening{
+  color:#26324b;
+  background:radial-gradient(circle,#fff,#f8f5ff);
+}
 
-Jujur, suka ka salah paham. Tapi itu karena takut ja bad ending. Haha... nda jelas toh apa kutulis.
+h1{
+  font:600 clamp(30px,8vw,43px) 'Playfair Display',serif;
+  margin:0 0 17px;
+}
 
-nda tauka kenapako tiba-tiba ngilang. Awalnya kukira nda ada waktumu balas chatku. Tapi ternyata dua kali memang begitu. Ya nda papaji... walau sakit dikit (dikitji)
+p{
+  font-size:14px;
+  line-height:1.9;
+  max-width:440px;
+  color:#e5edff;
+  margin:0 auto 20px;
+}
 
-Ada alasan juga nda ku angkat teleponmu. sebenarnya rada malu ka. Nda ada temanmu saja maluka angkat teleponmu, apalagi ini biad tukang print mu teleponnn..
+#opening p{color:#7d8495}
 
-Nah, soal ajak main PS... nda tau itu real atau nda. Karena temanmu bilang bukan kau. Tapi kalau memang kau, sebenarnya bingung ka. Habis ko ngilang, tiba-tiba ngajak main PS. Jadi rada trust issue ka.
+.envelope{
+  font-size:105px;
+  animation:bob 2s infinite;
+  cursor:pointer;
+}
 
-Apalagi ya...
+@keyframes bob{
+  50%{transform:translateY(-11px)}
+}
 
-Ga tau deh. Bingung ka masih berteman jki atau nda.
+.hint{
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#9ba2b2;
+  margin:18px;
+}
 
-Jujur, sakit kalau diam-diaman ki di sekolah. Hal yang paling kutakutkan itu kalau kita jadi asing.
+button{
+  border:0;
+  border-radius:30px;
+  padding:13px 26px;
+  min-height:45px;
+  background:linear-gradient(135deg,#ff9bb8,#f36f9b);
+  color:white;
+  font:600 14px 'DM Sans';
+  cursor:pointer;
+  box-shadow:0 8px 22px #ed7da744;
+}
 
-Tapi kalau memang nda bisami temenan atau memang harus begini, ya mau bagaimana lagi.
+button:active{transform:scale(.96)}
 
-Nda tau mubacaji atau nda ini teksku. Biarpun mubaca, mungkin nda kutau juga kalau memang nubaca mi.
+.secondary{
+  background:#ffffff18;
+  border:1px solid #ffffff55;
+  box-shadow:none;
+}
 
-Intinya... makasih atas segalanya. Setidaknya pernah ja nu anggap teman... 
+.blue{
+  background:
+    radial-gradient(ellipse at 15% 12%,#285da8,transparent 42%),
+    linear-gradient(145deg,#0c3679,#061638);
+}
 
-update:
-1.1 baru kutau ada mi ternyata mu suka,pantas cuek mko, sorry ndak kutauki 
-1.2 fyi i didn't stop liking u 
-1.3 are we basically strangers now??
-1.4 hemm sendirika nonton spidermen moka ajakki tapi masa stranger ju ajak xixixixixixixixixiixixi 🫠
+.blue:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  opacity:.25;
+  background-image:radial-gradient(#fff 1px,transparent 1.5px);
+  background-size:46px 46px;
+  pointer-events:none;
+}
 
-last update
-nda tau kenapa sakit sekali rasanya, baru pertama kali iya begini,mungkin dapat karma ka, maaf kalo ada salah ku,tidak tau apa2 ka jujur, kurasa jg asing jalan terbaik mi, padahal masih ku sukakkko,tapi sakittttttt sekaliiii sumpah,sekali lagi maaf ka, freak banget ka jadi cowo, jelek , cringe , sok asik....
+.page>*{
+  position:relative;
+  z-index:1;
+}
 
-Bye, Rani.
+.emoji{
+  font-size:62px;
+  margin-bottom:20px;
+  animation:bob 3s infinite;
+}
 
-Maaf kalau ada salah kata. Semua yang kutulis di sini benar-benar murni dari isi pikiranku.</p>
-</div></body></html>
+.controls{
+  display:flex;
+  gap:11px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+
+.letter{
+  width:min(100%,440px);
+  padding:24px;
+  text-align:left;
+  border:1px solid #ffffff35;
+  background:#ffffff12;
+  border-radius:20px;
+  font-size:13px;
+  line-height:1.95;
+}
+
+.signature{
+  text-align:right;
+  font:italic 16px 'Playfair Display';
+  margin-top:18px;
+}
+
+.video-frame{
+  width:min(78vw,290px);
+  aspect-ratio:9/16;
+  border-radius:25px;
+  padding:5px;
+  background:linear-gradient(135deg,#ffe1ec,#fff8);
+  box-shadow:0 18px 55px #0007;
+  margin:16px auto 20px;
+  overflow:hidden;
+}
+
+.video-frame video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+  background:#050505;
+  border-radius:20px;
+}
+
+#videoPage.active{
+  animation:reveal 1.25s ease both;
+}
+
+@keyframes reveal{
+  from{opacity:0;transform:scale(.97);filter:blur(5px)}
+  to{opacity:1;transform:scale(1);filter:blur(0)}
+}
+
+.note{
+  font-size:12px;
+  color:#d4def4;
+}
+
+.float{
+  position:fixed;
+  bottom:-35px;
+  z-index:5;
+  pointer-events:none;
+  animation:rise linear forwards;
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-115svh) rotate(35deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING -->
+<section class="page active" id="opening">
+  <h1>Hi, Rani! ♡</h1>
+  <div class="envelope" onclick="goTo(1)">💌</div>
+  <div class="hint">A little surprise for you</div>
+  <p>There's something waiting for you...</p>
+  <button onclick="goTo(1)">Open your letter</button>
+</section>
+
+<!-- PAGE 1 -->
+<section class="page blue">
+  <div class="emoji">🎂</div>
+  <h1>Happy Birthday!</h1>
+  <p>
+    Selamat ulang tahun, Rani! Hari ini hari spesialmu.
+    Semoga website kecil ini bisa menambah sedikit kebahagiaan di harimu. 🥳
+  </p>
+  <button onclick="goTo(2)">Let's celebrate ✨</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page blue">
+  <div class="emoji">🎁</div>
+  <h1>For You, Rani</h1>
+  <p>
+    Semoga di umur yang baru ini kamu selalu diberi kesehatan,
+    kebahagiaan, dan banyak hal baik.
+    Semoga satu per satu hal yang kamu impikan bisa tercapai.
+  </p>
+  <div class="controls">
+    <button class="secondary" onclick="goTo(1)">Back</button>
+    <button onclick="goTo(3)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page blue">
+  <div class="emoji">🌷</div>
+  <h1>A Little Wish</h1>
+  <p>
+    Jangan lupa untuk selalu jadi diri sendiri,
+    menikmati hal-hal kecil, dan tetap semangat mengejar
+    apa yang kamu inginkan.
+    You deserve good things, Rani!
+  </p>
+  <div class="controls">
+    <button class="secondary" onclick="goTo(2)">Back</button>
+    <button onclick="goTo(4)">Next →</button>
+  </div>
+</section>
+
+<!-- LETTER PAGE -->
+<section class="page blue">
+  <div class="emoji">💌</div>
+  <h1>A Letter For You</h1>
+
+  <div class="letter">
+    Happy sweet seventeen, Raniii! ❤️<br><br>
+
+    Wish u all the best. I've been waiting for this moment for so long, and finally, I get to talk to you again.<br><br>
+
+    Now that I think about it, ternyata jarang banget ki ngobrol deh, hmmz. I wish we could communicate better and have more moments to talk.<br><br>
+
+    Anyway, happy birthday once again to the girl that I admire. Hope this year treats you kindly!
+
+    <div class="signature">
+      From someone who admires you ♡
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="secondary" onclick="goTo(3)">Back</button>
+    <button onclick="goTo(5)">One last thing…</button>
+  </div>
+</section>
+
+<!-- LAST SURPRISE -->
+<section class="page blue">
+  <div class="emoji">✨</div>
+  <h1>One Last Surprise...</h1>
+  <p>
+    Rani, ada satu hal lagi yang ingin aku tunjukkan buat kamu.
+    Tekan tombol di bawah kalau sudah siap.
+  </p>
+  <button onclick="startVideo()">Mulai ❤️</button>
+
+  <div class="controls">
+    <button class="secondary" onclick="goTo(4)">Back</button>
+  </div>
+</section>
+
+<!-- VIDEO PAGE -->
+<section class="page blue" id="videoPage">
+  <div class="emoji">🎬</div>
+  <h1>A Special Video For You</h1>
+  <p>Just for you, Rani. ♡</p>
+
+  <div class="video-frame">
+    <video id="myVideo" controls playsinline preload="metadata">
+      <source src="ucapan-rani.mp4" type="video/mp4">
+      Video tidak dapat diputar di browser ini.
+    </video>
+  </div>
+
+  <p>Once again, happy birthday, Rani! ❤️</p>
+
+  <button class="secondary" onclick="replayVideo()">
+    Replay video ↻
+  </button>
+
+  <div class="controls">
+    <button class="secondary" onclick="stopAndGoBack()">
+      Back
+    </button>
+  </div>
+
+  <div class="note">
+    Jika video tidak mulai otomatis, tekan tombol Play.
+  </div>
+</section>
+
+<script>
+const pages=[...document.querySelectorAll('.page')];
+const video=document.getElementById('myVideo');
+
+function goTo(i){
+  video.pause();
+
+  pages.forEach(p=>p.classList.remove('active'));
+
+  pages[i].classList.add('active');
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+}
+
+function startVideo(){
+  goTo(6);
+
+  video.currentTime=0;
+
+  const p=video.play();
+
+  if(p!==undefined){
+    p.catch(()=>{});
+  }
+}
+
+function replayVideo(){
+  video.currentTime=0;
+  video.play().catch(()=>{});
+}
+
+function stopAndGoBack(){
+  video.pause();
+  goTo(5);
+}
+
+function makeFloat(){
+  const e=document.createElement('span');
+
+  e.className='float';
+
+  e.textContent=['♡','✦','💙','✨'][
+    Math.floor(Math.random()*4)
+  ];
+
+  e.style.left=Math.random()*100+'vw';
+  e.style.fontSize=(13+Math.random()*17)+'px';
+  e.style.animationDuration=(6+Math.random()*5)+'s';
+
+  document.body.appendChild(e);
+
+  setTimeout(()=>e.remove(),11000);
+}
+
+setInterval(makeFloat,850);
+</script>
+
+</body>
+</html>
