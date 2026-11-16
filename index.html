@@ -233,17 +233,15 @@ button:active{transform:scale(.96)}
 </audio>
 
 <!-- MUSIC BUTTON -->
-<button id="musicBtn" onclick="toggleMusic()" aria-label="Play music">
-  🎵
-</button>
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
 
 <!-- OPENING -->
 <section class="page active" id="opening">
   <h1>Hi, Rani! ♡</h1>
-  <div class="envelope" onclick="goTo(1)">💌</div>
+  <div class="envelope" onclick="startMusicAndOpen()">💌</div>
   <div class="hint">A little surprise for you</div>
   <p>There's something waiting for you...</p>
-  <button onclick="goTo(1)">Open your letter</button>
+  <button onclick="startMusicAndOpen()">Open your letter</button>
 </section>
 
 <!-- PAGE 1 -->
@@ -367,40 +365,51 @@ const musicBtn=document.getElementById('musicBtn');
 
 let isPlaying=false;
 
-/* MUSIC PLAY / PAUSE */
+/* UPDATE MUSIC BUTTON */
+function updateMusicButton(){
+  if(isPlaying){
+    musicBtn.textContent="⏸️";
+    musicBtn.classList.add('playing');
+  }else{
+    musicBtn.textContent="🎵";
+    musicBtn.classList.remove('playing');
+  }
+}
+
+/* PLAY / PAUSE MUSIC */
 function toggleMusic(){
 
   if(isPlaying){
     bgMusic.pause();
     isPlaying=false;
-
-    musicBtn.textContent="🎵";
-    musicBtn.classList.remove('playing');
-    musicBtn.setAttribute('aria-label','Play music');
-
+    updateMusicButton();
   }else{
-
     bgMusic.play().then(()=>{
-
       isPlaying=true;
-
-      musicBtn.textContent="⏸️";
-      musicBtn.classList.add('playing');
-      musicBtn.setAttribute('aria-label','Pause music');
-
+      updateMusicButton();
     }).catch(()=>{
-
-      alert('Musik belum bisa diputar. Pastikan file lagu.mp3 sudah diupload ke GitHub.');
-
+      alert('Pastikan file lagu.mp3 sudah diupload ke GitHub.');
     });
   }
 }
 
-/* UPDATE BUTTON WHEN MUSIC ENDS */
+/* START MUSIC WHEN OPEN LETTER IS PRESSED */
+function startMusicAndOpen(){
+
+  bgMusic.play().then(()=>{
+    isPlaying=true;
+    updateMusicButton();
+  }).catch(()=>{
+    alert('Musik belum bisa diputar. Periksa file lagu.mp3.');
+  });
+
+  goTo(1);
+}
+
+/* MUSIC ENDED */
 bgMusic.addEventListener('ended',()=>{
   isPlaying=false;
-  musicBtn.textContent="🎵";
-  musicBtn.classList.remove('playing');
+  updateMusicButton();
 });
 
 /* PAGE NAVIGATION */
@@ -418,29 +427,22 @@ function goTo(i){
   });
 }
 
-/* START VIDEO - PAUSE BACKGROUND MUSIC */
+/* START VIDEO - STOP BACKGROUND MUSIC */
 function startVideo(){
 
   bgMusic.pause();
-
   isPlaying=false;
-
-  musicBtn.textContent="🎵";
-  musicBtn.classList.remove('playing');
-  musicBtn.setAttribute('aria-label','Play music');
+  updateMusicButton();
 
   goTo(6);
 
   video.currentTime=0;
-
   video.play().catch(()=>{});
 }
 
 /* REPLAY VIDEO */
 function replayVideo(){
-
   video.currentTime=0;
-
   video.play().catch(()=>{});
 }
 
@@ -448,24 +450,14 @@ function replayVideo(){
 function stopAndGoBack(){
 
   video.pause();
-
   goTo(5);
 
   bgMusic.play().then(()=>{
-
     isPlaying=true;
-
-    musicBtn.textContent="⏸️";
-    musicBtn.classList.add('playing');
-    musicBtn.setAttribute('aria-label','Pause music');
-
+    updateMusicButton();
   }).catch(()=>{
-
     isPlaying=false;
-
-    musicBtn.textContent="🎵";
-    musicBtn.classList.remove('playing');
-
+    updateMusicButton();
   });
 }
 
